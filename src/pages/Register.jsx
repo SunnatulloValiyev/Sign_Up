@@ -18,7 +18,7 @@ function Register() {
 
     try {
       await register(userData);
-      navigate("/"); // Ro'yxatdan o'tgach bosh sahifaga yo'naltirish
+      navigate("/"); 
     } catch (err) {
     }
   };
