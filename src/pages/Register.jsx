@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useGoogleProvider } from "../hooks/useGoogleProvider";
 
 function Register() {
   const { register, loading, error, clearError } = useAuth();
@@ -11,16 +12,15 @@ function Register() {
 
     const formData = new FormData(e.target);
     const userData = {
-      email: formData.get('email'),
-      name: formData.get('name'),
-      password: formData.get('password')
+      email: formData.get("email"),
+      name: formData.get("name"),
+      password: formData.get("password"),
     };
 
     try {
       await register(userData);
-      navigate("/main"); 
-    } catch (err) {
-    }
+      navigate("/main");
+    } catch (err) {}
   };
 
   return (
@@ -37,10 +37,14 @@ function Register() {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <h1 className="text-2xl font-bold text-black text-center">Ro'yxatdan o'tish</h1>
+              <h1 className="text-2xl font-bold text-black text-center">
+                Ro'yxatdan o'tish
+              </h1>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="email" className="block text-black">Email</label>
+                <label htmlFor="email" className="block text-black">
+                  Email
+                </label>
                 <input
                   required
                   type="email"
@@ -52,7 +56,9 @@ function Register() {
               </div>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="name" className="block text-black">Ism</label>
+                <label htmlFor="name" className="block text-black">
+                  Ism
+                </label>
                 <input
                   required
                   type="text"
@@ -64,7 +70,9 @@ function Register() {
               </div>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="password" className="block text-black">Parol</label>
+                <label htmlFor="password" className="block text-black">
+                  Parol
+                </label>
                 <input
                   required
                   type="password"
@@ -73,7 +81,9 @@ function Register() {
                   placeholder="Parolni kiriting"
                   className="w-full px-4 py-3 rounded-md border border-gray-300 dark:text-black focus:outline-none focus:ring-2 focus:ring-violet-600"
                 />
-                <p className="text-xs text-gray-500 mt-1">Kamida 6 belgi bo'lishi kerak</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Kamida 6 belgi bo'lishi kerak
+                </p>
               </div>
 
               <button
@@ -82,6 +92,18 @@ function Register() {
                 className="block w-full p-3 text-center rounded-sm text-white bg-violet-600 hover:bg-violet-700 active:scale-95 transition-transform disabled:opacity-50"
               >
                 {loading ? "Yuklanmoqda..." : "Ro'yxatdan o'tish"}
+              </button>
+              <button
+                aria-label="Log in with Google"
+                className="p-3 cursor-pointer ml-40 rounded-sm"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 32 32"
+                  className="w-5 h-5 text-black fill-current"
+                >
+                  <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
+                </svg>
               </button>
             </form>
 

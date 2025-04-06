@@ -54,6 +54,7 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     try {
       await signOut(auth);
+      setUser(null);
     } catch (error) {
       setError(error.message);
       throw error;
@@ -63,6 +64,7 @@ export function AuthProvider({ children }) {
   return (
     <AuthContext.Provider value={{ 
       user, 
+      setUser,         
       loading, 
       error,
       register, 
