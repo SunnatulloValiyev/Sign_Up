@@ -2,6 +2,7 @@ import { auth } from "../firebase/config";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useAuth } from "../context/AuthContext"; 
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export const useGoogleProvider = () => {
   const { setUser } = useAuth();
@@ -15,7 +16,7 @@ export const useGoogleProvider = () => {
       const req = await signInWithPopup(auth, provider);
       const user = req.user;
 
-      setUser(user); 
+      setUser(user);  
 
       setData(user);
       toast.success(`Welcome ${user.displayName}`);

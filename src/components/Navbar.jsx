@@ -6,7 +6,7 @@ function Navbar() {
 
   return (
     <header className="p-4 dark:bg-gray-100 dark:text-gray-800">
-      <div className="container flex justify-between h-16 mx-auto">
+      <div className="container flex justify-between h-16 mx-auto items-center">
         <div className="flex">
           <Link to="/" className="flex items-center p-2">
             <svg
@@ -22,22 +22,37 @@ function Navbar() {
         </div>
         <div className="items-center flex-shrink-0 hidden lg:flex">
           {user ? (
-            <button 
-              onClick={logout}
-              className="px-8 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50"
-            >
-              Log out
-            </button>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4">
+                <img 
+                  className="w-10 h-10 rounded-full" 
+                  src={user.photoURL || "/docs/images/people/profile-picture-5.jpg"} 
+                  alt={user.displayName || "User"}
+                />
+                <div className="font-medium dark:text-white">
+                  <div className="text-black">Hello! {user.displayName || "User"}</div>
+                </div>
+              </div>
+              <button 
+                onClick={logout}
+                className="px-4 py-2 font-semibold rounded dark:bg-violet-600 dark:text-gray-50 hover:bg-violet-700 transition-colors"
+              >
+                Chiqish
+              </button>
+            </div>
           ) : (
             <>
-              <Link to="/login" className="px-4 py-2 mr-2">
-                Login
+              <Link 
+                to="/login" 
+                className="px-4 py-2 mr-2 hover:text-violet-600 transition-colors"
+              >
+                Kirish
               </Link>
               <Link 
                 to="/register" 
-                className="px-8 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50"
+                className="px-4 py-2 font-semibold rounded dark:bg-violet-600 dark:text-gray-50 hover:bg-violet-700 transition-colors"
               >
-                Register
+                Ro'yxatdan o'tish
               </Link>
             </>
           )}
