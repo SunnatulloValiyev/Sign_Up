@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import { AuthProvider } from './context/AuthContext';
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -7,32 +7,36 @@ import MainLayout from "./layouts/MainLayout";
 import Create from "./pages/Create";
 import ProtectedRoute from "./components/ProtectedRoutes";
 
-function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainLayout />,
-      children: [
-        {
-          index: true,
-          element: <Home />
-        },
-        {
-          path: "create",
-          element: <ProtectedRoute><Create /></ProtectedRoute>
-        }
-      ]
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/register",
-      element: <Register />,
-    }
-  ]);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/register" />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/main",
+    element: <MainLayout />,
+    children: [
+      {
+        index: true,
+        element: <Home />
+      },
+      {
+        path: "create",
+        element: <ProtectedRoute><Create /></ProtectedRoute>
+      }
+    ]
+  },
+]);
 
+function App() {
   return (
     <AuthProvider>
       <RouterProvider router={router} />

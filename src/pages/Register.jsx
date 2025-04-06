@@ -8,7 +8,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     clearError();
-    
+
     const formData = new FormData(e.target);
     const userData = {
       email: formData.get('email'),
@@ -18,7 +18,7 @@ function Register() {
 
     try {
       await register(userData);
-      navigate("/"); 
+      navigate("/main"); 
     } catch (err) {
     }
   };
@@ -35,14 +35,12 @@ function Register() {
                 {error}
               </div>
             )}
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <h1 className="text-2xl font-bold text-black text-center">Ro'yxatdan o'tish</h1>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="email" className="block text-black">
-                  Email
-                </label>
+                <label htmlFor="email" className="block text-black">Email</label>
                 <input
                   required
                   type="email"
@@ -54,9 +52,7 @@ function Register() {
               </div>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="name" className="block text-black">
-                  Ism
-                </label>
+                <label htmlFor="name" className="block text-black">Ism</label>
                 <input
                   required
                   type="text"
@@ -68,9 +64,7 @@ function Register() {
               </div>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="password" className="block text-black">
-                  Parol
-                </label>
+                <label htmlFor="password" className="block text-black">Parol</label>
                 <input
                   required
                   type="password"
@@ -79,9 +73,7 @@ function Register() {
                   placeholder="Parolni kiriting"
                   className="w-full px-4 py-3 rounded-md border border-gray-300 dark:text-black focus:outline-none focus:ring-2 focus:ring-violet-600"
                 />
-                <p className="text-xs text-gray-500 mt-1">
-                  Kamida 6 belgi bo'lishi kerak
-                </p>
+                <p className="text-xs text-gray-500 mt-1">Kamida 6 belgi bo'lishi kerak</p>
               </div>
 
               <button
@@ -94,7 +86,7 @@ function Register() {
             </form>
 
             <p className="text-xs text-center sm:px-6 text-gray-600 dark:text-black">
-              Akkauntingiz bormi?{' '}
+              Akkauntingiz bormi?{" "}
               <Link
                 to="/login"
                 className="ml-1 text-violet-600 dark:text-violet-400 hover:underline"

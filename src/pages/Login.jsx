@@ -8,7 +8,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     clearError();
-    
+
     const formData = new FormData(e.target);
     const credentials = {
       email: formData.get('email'),
@@ -17,7 +17,7 @@ function Login() {
 
     try {
       await login(credentials);
-      navigate("/"); 
+      navigate("/main"); 
     } catch (err) {
     }
   };
@@ -34,14 +34,12 @@ function Login() {
                 {error}
               </div>
             )}
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <h1 className="text-2xl font-bold text-black text-center">Tizimga kirish</h1>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="email" className="block text-black">
-                  Email
-                </label>
+                <label htmlFor="email" className="block text-black">Email</label>
                 <input
                   required
                   type="email"
@@ -51,10 +49,9 @@ function Login() {
                   className="w-full px-4 py-3 rounded-md border border-gray-300 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-violet-600"
                 />
               </div>
+
               <div className="space-y-1 text-sm">
-                <label htmlFor="password" className="block text-black">
-                  Parol
-                </label>
+                <label htmlFor="password" className="block text-black">Parol</label>
                 <input
                   required
                   type="password"
@@ -80,7 +77,7 @@ function Login() {
             </form>
 
             <p className="text-xs text-center sm:px-6 text-gray-600 dark:text-gray-400">
-              Akkauntingiz yo'qmi?{' '}
+              Akkauntingiz yo'qmi?{" "}
               <Link
                 to="/register"
                 className="ml-1 text-violet-600 dark:text-violet-400 hover:underline"
