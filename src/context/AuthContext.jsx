@@ -61,19 +61,26 @@ export function AuthProvider({ children }) {
           const statusData = snapshot.val();
           const onlineUsersList = [];
           
+          onlineUsersList.push({
+            uid: firebaseUser.uid,
+            displayName: firebaseUser.displayName,
+            email: firebaseUser.email,
+            photoURL: firebaseUser.photoURL || "/default-avatar.jpg"
+          });
+
           for (const uid in statusData) {
-            if (statusData[uid].state === 'online') {
-              // Foydalanuvchi ma'lumotlarini olish
+            if (statusData[uid].state === 'online' && uid !== firebaseUser.uid) {
               const userRef = ref(database, `users/${uid}`);
               onValue(userRef, (userSnapshot) => {
                 const userData = userSnapshot.val();
-                if (userData) {
+                if (userData && !onlineUsersList.some(u => u.uid === userData.uid)) {
                   onlineUsersList.push(userData);
                   setOnlineUsers([...onlineUsersList]);
                 }
               });
             }
           }
+          setOnlineUsers(onlineUsersList);
         });
       } else {
         setUser(null);
